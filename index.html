@@ -9,9 +9,11 @@
 <style>
     body {
       margin: 0;
-      overflow: hidden;
+      overflow-x: hidden;
       font-family: Arial;
       letter-spacing: 1px;
+      scroll-behavior: smooth;
+      overscroll-behavior: none;
     }
 
     #parallax {
@@ -21,8 +23,8 @@
       overflow-x: hidden;
       margin-top: 0;
       height: 100vh;
-      background: rgb(6, 6, 6);
-      background: linear-gradient(0deg, rgb(223, 216, 191) 60%, rgb(203, 130, 101) 100%);
+      background: rgb(73, 164, 195);
+      background: linear-gradient(0deg, rgb(223, 216, 191) 60%, rgb(73, 164, 195) 100%);
     }
 
     #parallax .layer {
@@ -83,21 +85,7 @@
       fill: #db8836;
       transform: translateZ(-6px) scale(7);
     }
-
-    #landing {
-      position: relative;
-      background-color: #111115;
-      height: 100vh;
-      color: white;
-      margin-top: -4px;
-      padding: 1em;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-around;
-      text-align: center;
-    }
-
+    
     .content {
       position: relative;
       background-color: #414158;
@@ -134,7 +122,7 @@
     }
     .text-content {
       position: absolute;
-      top: 50%;
+      top: 40%;
       left: 50%;
       transform: translate(-50%, -50%);
       text-align: center;
@@ -148,13 +136,13 @@
       margin: 0;
       white-space: nowrap;
       overflow: hidden;
-      border-right: .15em solid #f8ad3e;
+      border-right: .15em solid #d3dc2e;
       width: 0;
       animation: typing 2.5s steps(30, end) forwards, blink-caret .75s step-end infinite;
     }
 
     .highlight-name {
-      color: #f8ad3e;
+      color: #dcb92e;
       font-weight: bold;
     }
 
@@ -165,14 +153,88 @@
 
     @keyframes blink-caret {
       from, to { border-color: transparent }
-      50% { border-color: #f8ad3e; }
+      50% { border-color: #dcb92e; }
     }
 
     .text-content p {
       font-size: 1.5em;
       margin: 0;
     }
-  </style>
+
+    /* Bubble Navigation Bar Styles */
+    .bubble-navbar {
+      position: fixed;
+      top: 2.5em;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 255, 255, 0.198);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+      z-index: 1000;
+      padding: 0.7em 1.5em;
+      border-radius: 2em;
+      display: flex;
+      justify-content: right;
+      align-items: center;
+      gap: 2em;
+      min-width: 1100px;
+      transition: box-shadow 0.2s;
+    }
+    .bubble-navbar:hover {
+      box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    }
+    .bubble-link {
+      color: #2e2b43;
+      text-decoration: none;
+      font-size: 1.1em;
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: 0.5em 1.3em;
+      border-radius: 2em;
+      background: #fffbe658;
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+      display: flex;
+      align-items: center;
+      min-width: 2.5em;
+      height: 1.5em;
+      box-shadow: 0 2px 8px rgba(220,185,46,0.08);
+    }
+    .bubble-link:hover, .bubble-link.active {
+      background: #62b0e4;
+      color: #2e2b43;
+      transform: scale(1.12);
+    }
+    .bubble-nav-container {
+      display: flex;
+      gap: 1.5em;
+    }
+    @media (max-width: 600px) {
+      .bubble-navbar {
+        top: 1em;
+        padding: 0.5em 0.7em;
+        gap: 1em;
+        min-width: 180px;
+      }
+      .bubble-link {
+        font-size: 1em;
+        width: 2em;
+        height: 2em;
+      }
+    }
+    .section {
+      min-height: 60vh;
+      padding: 6em 2em 2em 2em;
+      background: #18181b;
+      color: #fff;
+      margin: 0;
+    }
+    .section h2 {
+      color: #dcb92e;
+      margin-bottom: 0.5em;
+    }
+    @media (max-width: 600px) {
+      .section { padding: 7em 1em 2em 1em; }
+    }
+</style>
 </head>
 <body>
   <div id="parallax">
@@ -219,10 +281,57 @@
     </div>
     <div class="overlay"></div>
     <div class="text-content">
-      <h1>Hey! I'm <span class="highlight-name">Shreya Jain</span>.</h1>
+      <h1>Hey! I'm <span class="highlight-name">Shreya Jain.</span></h1>
     </div>
   </div>
-  <div id="landing"></div>
-  <script src="./sandbox.js"/>
+
+  <section id="about" class="section">
+    <h2>About Me</h2>
+  </section>
+
+  <section id="projects" class="section">
+    <h2>Projects</h2>
+  </section>
+
+  <section id="contact" class="section">
+    <h2>Contact Me</h2>
+  </section>
+
+  <nav class="bubble-navbar">
+    <div class="bubble-nav-container">
+      <a href="#about" class="bubble-link" title="About Me">About Me</a>
+      <a href="#projects" class="bubble-link" title="Projects">Projects</a>
+      <a href="#contact" class="bubble-link" title="Contact Me">Contact Me</a>
+    </div>
+  </nav>
+
+  <script>
+    // Highlight nav link on scroll
+    const sections = document.querySelectorAll('.section');
+    const navLinks = document.querySelectorAll('.bubble-link');
+    function activateNavLink() {
+      let current = '';
+      const scrollY = window.pageYOffset;
+      sections.forEach((section, idx) => {
+        const sectionTop = section.offsetTop - 140; // slightly larger offset for navbar height
+        const sectionHeight = section.offsetHeight;
+        // For last section, also check if we're at the bottom of the page
+        if (
+          (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) ||
+          (idx === sections.length - 1 && (window.innerHeight + scrollY >= document.body.offsetHeight - 2))
+        ) {
+          current = section.getAttribute('id');
+        }
+      });
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        }
+      });
+    }
+    window.addEventListener('scroll', activateNavLink);
+    window.addEventListener('DOMContentLoaded', activateNavLink);
+  </script>
 </body>
 </html>
