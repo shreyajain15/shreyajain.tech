@@ -21,8 +21,8 @@
       overflow-x: hidden;
       margin-top: 0;
       height: 100vh;
-      background: rgb(255, 255, 255);
-      background: linear-gradient(0deg, rgb(62, 68, 88) 60%, rgb(222, 228, 231) 100%);
+      background: rgb(6, 6, 6);
+      background: linear-gradient(0deg, rgb(223, 216, 191) 60%, rgb(203, 130, 101) 100%);
     }
 
     #parallax .layer {
@@ -31,24 +31,71 @@
       overflow: hidden;
     }
 
-    #city3 {
-      fill: #9a9b9d;
+    #city {
       transform: translateZ(-.5px) translateY(25%) scale(1.5);
+    }
+    .city_fill {
+      fill: #19202f;
+    }
+
+    #city2 {
+      transform: translateZ(-.5px) translateY(25%) scale(1.5);
+    }
+    .city_fill {
+      fill: #19202f;
+    }
+
+     #skytree {
+      transform: translateZ(-.75px) translateY(25%) scale(1.75);
+    }
+    .skytree_fill {
+      fill: #222032;
+    }
+    
+    #skyline {
+      transform: translateZ(-.4px) scale(1);
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      left: 40%;
+      bottom: -65%;
+    }
+
+    #skyline svg {
+      width: 150px;
+    }
+
+    #skyline path {
+      fill: #222032;
     }
 
     #cloud1 {
-      fill: #d3d3d6;
+      fill: #d8edf6;
       transform: translateZ(-2.5px) translateY(30%) scale(3.5);
     }
 
     #cloud2 {
-      fill: #b4b4b5;
+      fill: #9db3bf;
       transform: translateZ(-3.5px) translateY(-25%) scale(4.5);
     }
 
     #sun {
-      fill: #f6eee6;
+      fill: #db8836;
       transform: translateZ(-6px) scale(7);
+    }
+
+    #landing {
+      position: relative;
+      background-color: #111115;
+      height: 100vh;
+      color: white;
+      margin-top: -4px;
+      padding: 1em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      text-align: center;
     }
 
     .content {
@@ -75,6 +122,16 @@
     a:visited {
       color: #f1e3f7;
     }
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 150%;
+      background: rgba(0, 0, 0, 0.314);
+      z-index: 5;
+      pointer-events: none;
+    }
     .text-content {
       position: absolute;
       top: 50%;
@@ -82,11 +139,33 @@
       transform: translate(-50%, -50%);
       text-align: center;
       color: white;
+      z-index: 10;
     }
 
     .text-content h1 {
-      font-size: 3em;
+      font-size: 4.5em;
+      font-weight: bold;
       margin: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: .15em solid #f8ad3e;
+      width: 0;
+      animation: typing 2.5s steps(30, end) forwards, blink-caret .75s step-end infinite;
+    }
+
+    .highlight-name {
+      color: #f8ad3e;
+      font-weight: bold;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: #f8ad3e; }
     }
 
     .text-content p {
@@ -122,16 +201,28 @@
       </svg>
     </div>
 
-    <div id="tokyo_tower" class="layer">
+    <div id="city" class="city_fill layer">
       <svg viewBox="0 0 400 300">
-        <path></path>
+        <path d="M 0,210 40,210 40,250 50,250 50,100 55,100 59,93 62.5,96 66,93 70,100 75,100 75,195 95,195 95,235 125,235 125,125 155,125 155,205 175,205 175,225 215,225 215,195 245,195 245,115 265,115 265,215 275,215 275,115 286,115 286,110 287,110 287,115 291,115 291,105 292,105 292,115 295,115 295,195 335,195 335,135 345,135 345,130 349,130 349,125 350,125 350,130 352,130 352,126 353,126 353,130 355,130 355,135 360,135 360,175 380,175 380,200 400,200 400,300 0,300 0,210 Z"></path>
       </svg>
     </div>
 
+    <div id="skytree" class="skytree_fill layer">
+      <svg viewBox="0 0 400 300">
+        <path d="M 0,200 20,200 20,160 25,160 25,155 32,155 32,147 33,147 33,155 35,155 35,160 40,160 40,200 90,200 90,170 110,170 110,150 140,150 140,160 160,160 160,150 170,150 170,145 171,145 171,150 190,150 190,190 210,190 210,200 215,200 215,125 225,125 225,123 230,123 230,125 235,125 235,220 300,220 304,220 400,220 400,400 0,400 0,200 Z"></path>
+      </svg>
+    </div>
+
+    <div id="skyline" class="layer">
+      <svg xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 45.96 367.9">
+        <path d="M14.52 139.41h6.86V367.9H0c8.66-75.12 12.8-151.63 14.52-228.49zm-3.88-30.85v3.99l-5.69 5.21v.01h36.06v-.01l-5.69-5.21v-3.99h-8.21l-.18-5.35h.75c.25 0 .46-.2.46-.46v-4.54c0-.25-.21-.46-.46-.46h-.93l-.94-28.77h.6c1.5 0 2.73-1.23 2.73-2.74 0-1.5-1.23-2.73-2.73-2.73h-.54l-.11-27.34h-.68V21.94h-.68L24.07 0h-2.59l-.33 21.94h-.69v14.23h-.67l-.11 27.34h-.54a2.74 2.74 0 0 0-2.73 2.73c0 1.5 1.22 2.73 2.72 2.74l-.51 28.77h-.75c-.26 0-.46.21-.46.46v4.54c0 .26.21.46.46.46h.66l-.1 5.35h-7.79zm13.57 19.8v2.76h1.43l.5-2.76h-1.93zm-1.59 2.76v-2.76h-2.34l.5 2.76h1.84zm5.15-2.76-.5 2.76h2.67l.5-2.76h-2.67zm4.29 0-.5 2.76h2.67l.5-2.76h-2.67zm-12.91 2.76-.5-2.76h-2.67l.5 2.76h2.67zm-4.29 0-.5-2.76h-2.68l.51 2.76h2.67zm-9.91-10.59v2.32h36.06v-2.32H4.95zm0 3.12v3.11h36.06v-3.11H4.95zm1.33 4.71 2.3 2.76h1.98l-.5-2.76H6.28zm-.54 4.34c-1.15 2.07-.25 5.42 2.84 5.32h28.8c3.09.1 3.98-3.24 2.85-5.31H5.86c-.04 0-.08 0-.12-.01zm31.64-1.58 2.3-2.76h-3.32l-.5 2.76h1.52zm-12.8 8.29h6.34c2.03 76.89 6.66 153.34 15.04 228.49H24.58V139.41z"/></svg>
+    </div>
+    <div class="overlay"></div>
+    <div class="text-content">
+      <h1>Hey! I'm <span class="highlight-name">Shreya Jain</span>.</h1>
+    </div>
   </div>
-  <div class="text-content">
-    <h1>Hey, I'm Shreya!</h1>
-    <p>I have the world's cutest dog, Shiro</p>
-</div>
+  <div id="landing"></div>
   <script src="./sandbox.js"/>
 </body>
+</html>
