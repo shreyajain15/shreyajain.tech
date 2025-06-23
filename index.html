@@ -7,16 +7,20 @@
 </html>
 
 <style>
+    html{
+      scroll-behavior: smooth;
+    }
     body {
       margin: 0;
       overflow-x: hidden;
       font-family: Arial;
       letter-spacing: 1px;
       scroll-behavior: smooth;
-      overscroll-behavior: none;
     }
 
     #parallax {
+      overflow: visible;
+      height: auto;
       min-height: 100vh;
       position: relative;
       overflow-x: hidden;
@@ -29,10 +33,13 @@
     }
 
     #parallax .layer {
-      position: absolute;
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 100vw;
       overflow: hidden;
       pointer-events: none;
+      will-change: transform;
     }
 
     #city {
@@ -57,11 +64,16 @@
     }
     
     #skyline {
-      transform: translateZ(-.4px) translateY(0%) scale(1);
-      display: flex;
-      justify-content: center;
-      left: 40%;
+      transform: translateZ(-.4px) scale(1);
+      position: relative;
       bottom: -65%;
+      right: 0;
+      left: auto;
+      margin-left: auto;
+      margin-right: 4vw;
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
     }
 
     #skyline svg {
@@ -220,6 +232,9 @@
         width: 2em;
         height: 2em;
       }
+      #skyline {
+        margin-right: 1vw;
+      }
     }
     .section {
       min-height: 60vh;
@@ -235,7 +250,27 @@
     @media (max-width: 600px) {
       .section { padding: 7em 1em 2em 1em; }
     }
+    @media (max-width: 768px) {
+      .text-content h1 {
+        font-size: 2em;
+        width: 90vw;
+      }
+
+      .bubble-navbar {
+        flex-direction: column;
+        min-width: auto;
+        width: 90vw;
+        gap: 0.5em;
+      }
+
+      .bubble-link {
+        width: 100%;
+        text-align: center;
+        padding: 0.7em;
+      }
+    }
 </style>
+
 </head>
 <body>
   <div id="parallax">
