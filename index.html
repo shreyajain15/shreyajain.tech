@@ -47,7 +47,7 @@
                 </div>
                 <h1 class="hero-title">
                     <span class="title-line">
-                        <span class="typing-text" id="typingText"></span>
+                    <span class="typing-text" id="typingText"></span>
                     </span>
                 </h1>
                 <div class="hero-cta">
@@ -60,13 +60,12 @@
                     <a href="#contact" class="cta-button secondary">
                         <span>Get In Touch</span>
                     </a>
-                </div>
             </div>
+        </div>
         </div>
         
         <div class="hero-scroll-indicator">
             <div class="scroll-line"></div>
-            <div class="scroll-text">Scroll</div>
         </div>
         
         <div class="hero-interactive-cursor" id="interactiveCursor"></div>
@@ -82,10 +81,10 @@
                 </div>
                 <div class="about-text">
                     <p class="about-intro">
-                        I'm a fourth-year Computer Engineering student at University of Toronto and I'm also minoring in artificial intelligence. I enjoy working on projects that make an impact, especially ones that need creativity and push technological boundaries. I like exploring new ideas, trying different projects and taking on challenges that help me grow.
+                        I'm a fourth year Computer Engineering student at the University of Toronto with a minor in AI. I like building things that solve real problems and I'm most energized when I'm learning something new. <br><br> At ONxpress I saw how many moving parts shape large scale construction work and how much pressure teams face navigating regulations and daily workflows. Seeing hundreds of people rely on a tool I built showed me how meaningful well designed software can be in a complex system. <br><br> It also helped me see how many gaps exist across different fields and how much I enjoy building tools that make those spaces work better. I want to keep taking on projects that address those gaps so I can learn, grow and make an impact.
                     </p>
                     <p>
-                        Outside of engineering, I'm also interested in astronomy, psychology and criminology. I also love to talk about my dog, Shiro!
+                        Additionally, I'm drawn to big questions about how people and the universe work which is why astronomy, psychology and criminology inspire me. They help me think from different angles and bring creativity into my engineering work. I also love talking about my dog, Shiro.
                     </p>
                 </div>
             </div>
@@ -216,6 +215,26 @@
                 <div class="project-card">
                     <div class="project-header">
                         <div>
+                            <h3 class="project-title">BuildWise</h3>
+                            <p class="project-meta">AI Driven Construction Proposal Assessment Assistant</p>
+                        </div>
+                    </div>
+                    <p class="project-description">
+                        System that analyzes construction proposals and flags potential risks and Ontario building code violations. Combines a custom knowledge graph with a fine tuned model to extract technical details, retrieve relevant regulations and produce compliance feedback.
+                    </p>
+                    <div class="project-footer">
+                    <div class="project-tags">
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">Cypher</span>
+                            <span class="project-tag">Knowledge Graphs</span>
+                            <span class="project-tag">LLMs</span>
+                        </div>
+                        <span class="project-date">Sep 2025 - Present</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-header">
+                        <div>
                             <h3 class="project-title">AquaLens</h3>
                             <p class="project-meta">Technical Project Lead | Engineers without Borders</p>
                         </div>
@@ -224,7 +243,7 @@
                         Flutter-based hybrid app for image-based water quality assessment, designed to assist farmers in Mexico. Engineered and integrated a Firebase database to manage user data across multiple platforms (macOS, Android, iOS).
                     </p>
                     <div class="project-footer">
-                        <div class="project-tags">
+                    <div class="project-tags">
                             <span class="project-tag">Flutter</span>
                             <span class="project-tag">Firebase</span>
                             <span class="project-tag">Dart</span>
@@ -246,7 +265,7 @@
                     <div class="project-footer">
                         <div class="project-tags">
                             <span class="project-tag">C++</span>
-                            <span class="project-tag">Python</span>
+                        <span class="project-tag">Python</span>
                             <span class="project-tag">OpenStreetMap</span>
                         </div>
                         <span class="project-date">Apr 2023</span>
@@ -263,7 +282,7 @@
                         Car racing game developed in C/Assembly with DE1-SoC Board for direct hardware control and VGA output. Built a custom game engine for real-time car control with dynamic graphics and optimized performance using Python pre-loading scripts.
                     </p>
                     <div class="project-footer">
-                        <div class="project-tags">
+                    <div class="project-tags">
                             <span class="project-tag">C</span>
                             <span class="project-tag">Assembly</span>
                             <span class="project-tag">FPGA</span>
@@ -448,7 +467,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
+      position: relative;
             overflow: hidden;
             padding-top: 80px;
             background: #0a0e27;
@@ -998,10 +1017,34 @@
 
         /* Projects Section */
         .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            display: flex;
             gap: 2rem;
             margin-top: 2rem;
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding-bottom: 1rem;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+        }
+
+        .projects-grid::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .projects-grid::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+        }
+
+        .projects-grid::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+        }
+
+        .projects-grid::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.5);
         }
 
         .project-card {
@@ -1012,7 +1055,10 @@
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             flex-direction: column;
-            height: 100%;
+            min-width: 350px;
+            max-width: 400px;
+            width: 100%;
+            flex-shrink: 0;
         }
 
         .project-card:hover {
@@ -1023,7 +1069,7 @@
         }
 
         .project-header {
-            display: flex;
+      display: flex;
             justify-content: space-between;
             align-items: flex-start;
             margin-bottom: 1.25rem;
@@ -1047,7 +1093,7 @@
 
         .project-link {
             color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
+      text-decoration: none;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
@@ -1140,7 +1186,7 @@
 
         .contact-link {
             display: inline-flex;
-            align-items: center;
+      align-items: center;
             gap: 0.75rem;
             padding: 1rem 2rem;
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%);
@@ -1284,8 +1330,8 @@
                 top: 70px;
                 flex-direction: column;
                 background: white;
-                width: 100%;
-                text-align: center;
+        width: 100%;
+        text-align: center;
                 transition: 0.3s;
                 box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
                 padding: 2rem 0;
@@ -1340,12 +1386,10 @@
             }
 
             .hobbies-grid,
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
             .project-card {
                 padding: 1.5rem;
+                min-width: 280px;
+                max-width: 320px;
             }
 
             .project-footer {
@@ -1395,8 +1439,8 @@
 
             .hero-scroll-indicator {
                 bottom: 2rem;
-            }
-        }
+      }
+    }
 </style>
 
   <script>
@@ -1431,13 +1475,27 @@
 
         window.addEventListener('scroll', () => {
       let current = '';
+            const scrollPosition = window.pageYOffset + 300; // Offset for better detection
+            
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
                 const sectionHeight = section.clientHeight;
-                if (window.pageYOffset >= sectionTop - 200) {
-          current = section.getAttribute('id');
-        }
-      });
+                const sectionBottom = sectionTop + sectionHeight;
+                const sectionId = section.getAttribute('id');
+                
+                // Check if we're in this section
+                if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                    current = sectionId;
+                }
+            });
+
+            // If we're at the bottom of the page, activate the last section
+            if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
+                const lastSection = sections[sections.length - 1];
+                if (lastSection) {
+                    current = lastSection.getAttribute('id');
+                }
+            }
 
       navLinks.forEach(link => {
         link.classList.remove('active');
