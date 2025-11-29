@@ -4,6 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shreya Jain | Software Engineer</title>
+    <meta name="description" content="Fourth year Computer Engineering student at University of Toronto with a minor in AI. Building things that solve real problems.">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://shreyajain.tech/">
+    <meta property="og:title" content="Shreya Jain | Software Engineer">
+    <meta property="og:description" content="Fourth year Computer Engineering student at University of Toronto with a minor in AI. Building things that solve real problems.">
+    <meta property="og:image" content="https://shreyajain.tech/images/shiro.HEIC">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://shreyajain.tech/">
+    <meta property="twitter:title" content="Shreya Jain | Software Engineer">
+    <meta property="twitter:description" content="Fourth year Computer Engineering student at University of Toronto with a minor in AI. Building things that solve real problems.">
+    <meta property="twitter:image" content="https://shreyajain.tech/images/shiro.HEIC">
+    
     <link rel="icon" href="images/shiro.HEIC" type="image/heic">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,7 +29,9 @@
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <a href="#home" class="nav-logo">SJ</a>
+            <a href="#home" class="nav-logo">
+                <img src="images/shiro_2.png" alt="Shiro" class="nav-logo-image">
+            </a>
             <ul class="nav-menu">
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#experience" class="nav-link">Experience</a></li>
@@ -82,9 +100,6 @@
                 <div class="about-text">
                     <p class="about-intro">
                         I'm a fourth year Computer Engineering student at the University of Toronto with a minor in AI. I like building things that solve real problems and I'm most energized when I'm learning something new. <br><br> At ONxpress I saw how many moving parts shape large scale construction work and how much pressure teams face navigating regulations and daily workflows. Seeing hundreds of people rely on a tool I built showed me how meaningful well designed software can be in a complex system. <br><br> It also helped me see how many gaps exist across different fields and how much I enjoy building tools that make those spaces work better. I want to keep taking on projects that address those gaps so I can learn, grow and make an impact.
-                    </p>
-                    <p>
-                        Additionally, I'm drawn to big questions about how people and the universe work which is why astronomy, psychology and criminology inspire me. They help me think from different angles and bring creativity into my engineering work. I also love talking about my dog, Shiro.
                     </p>
                 </div>
             </div>
@@ -201,6 +216,13 @@
                     <div class="hobby-icon">🎨</div>
                     <h3 class="hobby-title">Creative Projects</h3>
                     <p class="hobby-description">Resin art, painting, and DIY arts and crafts projects are my favourite ways to be creative.</p>
+                </div>
+                <div class="hobby-card">
+                    <div class="hobby-icon shiro-icon">
+                        <img src="images/shiro_bg_less.png" alt="Shiro" class="shiro-image">
+                    </div>
+                    <h3 class="hobby-title">Shiro</h3>
+                    <p class="hobby-description">I love hanging out with my dog, Shiro!</p>
                 </div>
             </div>
         </div>
@@ -410,6 +432,17 @@
             color: var(--color-primary);
             text-decoration: none;
             font-family: 'Playfair Display', serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-logo-image {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
         }
 
         .nav-menu {
@@ -830,6 +863,12 @@
             background: rgba(15, 23, 42, 0.95);
             color: white;
             backdrop-filter: blur(10px);
+            overflow: visible;
+        }
+
+        #projects.section-alt {
+            padding-top: 6rem;
+            padding-bottom: 6rem;
         }
 
         .section-title {
@@ -885,7 +924,7 @@
         }
 
         .about-intro {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 500;
             margin-bottom: 1.5rem;
             color: var(--color-text);
@@ -895,6 +934,7 @@
             margin-bottom: 1.5rem;
             color: var(--color-text-light);
             line-height: 1.8;
+            font-size: 0.95rem;
         }
 
         /* Experience Section */
@@ -1003,6 +1043,25 @@
             margin-bottom: 1rem;
         }
 
+        .shiro-icon {
+            font-size: 0;
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            border-radius: 50%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .shiro-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
         .hobby-title {
             font-size: 1.3rem;
             font-weight: 600;
@@ -1021,8 +1080,8 @@
             gap: 2rem;
             margin-top: 2rem;
             overflow-x: auto;
-            overflow-y: hidden;
-            padding-bottom: 1rem;
+            overflow-y: visible;
+            padding: 1rem 0 1rem 0;
             scroll-behavior: smooth;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: thin;
